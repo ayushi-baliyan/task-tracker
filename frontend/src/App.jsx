@@ -3,7 +3,6 @@ import API from "./Services/api";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import "./App.css";
-
 import bg from "./assets/background.jpg";
 
 function App() {
@@ -11,7 +10,7 @@ function App() {
 
   const fetchTasks = async () => {
     try {
-      const res = await API.get("/tasks");
+      const res = await API.get("/");
       setTasks(res.data);
     } catch (error) {
       console.log(error);
@@ -24,7 +23,7 @@ function App() {
 
   const addTask = async (task) => {
     try {
-      await API.post("/tasks", task);
+      await API.post("/", task);
       fetchTasks();
     } catch (error) {
       console.log(error);
@@ -33,7 +32,7 @@ function App() {
 
   const deleteTask = async (id) => {
     try {
-      await API.delete(`/tasks/${id}`);
+      await API.delete(`/${id}`);
       fetchTasks();
     } catch (error) {
       console.log(error);
@@ -42,7 +41,7 @@ function App() {
 
   const updateTask = async (id) => {
     try {
-      await API.put(`/tasks/${id}`, {
+      await API.put(`/${id}`, {
         status: "Completed",
       });
       fetchTasks();
